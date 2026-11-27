@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-padding-top: 68px; -webkit-text-size-adjust: 100%; }
+  body { @apply bg-white font-sans text-ink-700 antialiased; text-rendering: optimizeLegibility; }
+  h1, h2, h3, h4 { @apply font-display text-ink-900; text-wrap: balance; }
+  p { text-wrap: pretty; }
+  ::selection { @apply bg-brand-200 text-ink-900; }
+  :focus-visible { @apply outline-none ring-2 ring-brand-500 ring-offset-2; }
+}
+
+@layer components {
+  .page { @apply mx-auto w-full max-w-page px-4 sm:px-6; }
+  .card { @apply rounded-2xl border border-ink-200 bg-white shadow-soft; }
+  .card-hover { @apply transition duration-300 hover:-translate-y-1 hover:border-brand-200 hover:shadow-lift; }
+  /* Adds a soft gradient edge on hover. Use together with .card. */
+  .card-glow { position: relative; isolation: isolate; }
+  .card-glow::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    z-index: -1;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, #8085f9, #a9ebee 45%, #c58bff);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 300ms ease;
+  }
+  .card-glow:hover::before, .card-glow:focus-within::before { opacity: 1; }
+  .icon-tile { @apply grid shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-[#5b5cf0] to-[#7a1ff0] text-white shadow-[0_8px_20px_-8px_rgba(99,95,242,.7)]; }
+  .field {
+    @apply min-h-11 w-full rounded-xl border border-ink-300 bg-white px-3 py-2 text-base text-ink-900 shadow-sm transition placeholder:text-ink-400 hover:border-ink-400 focus:border-brand-500 focus:outline-none focus:ring-4 focus:ring-brand-100;
+  }
+  .grid-lines {
+    background-image: linear-gradient(to right, rgba(14, 19, 41, .055) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(14, 19, 41, .055) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 75% 65% at 50% 0%, #000 30%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 75% 65% at 50% 0%, #000 30%, transparent 100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.home-hero {
+  background: radial-gradient(ellipse at 82% 15%, #293366, transparent 48%),
+    radial-gradient(ellipse at 10% 100%, #172b49, transparent 44%), #0b1024;
+}
+.hero-grid {
+  pointer-events: none;
+  background-image: linear-gradient(#a8b9ff14 1px, transparent 1px),
+    linear-gradient(90deg, #a8b9ff14 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(#000, transparent 98%);
+}
+.home-headline {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.03;
+  letter-spacing: -.06em;
+}
+.home-headline span, .text-gradient {
+  background: linear-gradient(100deg, #a9ebee 10%, #a4acfd 55%, #d4a8ff 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+/* Slow drifting light behind dark heroes. Still when reduced motion is on. */
+.aurora { pointer-events: none; position: absolute; border-radius: 9999px; filter: blur(90px); opacity: .55; }
+.aurora-a { background: #4f46e5; animation: drift-a 18s ease-in-out infinite alternate; }
+.aurora-b { background: #0e7490; animation: drift-b 22s ease-in-out infinite alternate; }
+@keyframes drift-a { to { transform: translate(-12%, 10%) scale(1.15); } }
+@keyframes drift-b { to { transform: translate(14%, -8%) scale(1.1); } }
+.dark-hero {
+  background: radial-gradient(ellipse at 82% 10%, #293366, transparent 50%),
+    radial-gradient(ellipse at 5% 110%, #172b49, transparent 45%), #0b1024;
+}
+.float-slow { animation: float 7s ease-in-out infinite; }
+@keyframes float { 50% { transform: translateY(-10px); } }
+.marquee { mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.marquee-track { animation: marquee 40s linear infinite; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+.scroll-progress { transform-origin: 0 50%; background: linear-gradient(90deg, #2f6bea, #635ff2, #a9ebee); }
+.workflow-frame {
+  border: 1px solid #b9c9ff40;
+  border-radius: 29px;
+  box-shadow: 0 24px 72px #05081580;
+}
+.technology-band { background: #f5f7ff; }
+.home-proof { background: linear-gradient(135deg, #edf0ff, #eaf8fa); }
+
+.inner-hero {
+  background: radial-gradient(ellipse at 85% 5%, #dfecfa, transparent 52%),
+    linear-gradient(120deg, #f4f6ff, #fafcff 72%);
+}
+.action-primary {
+  background-image: linear-gradient(112deg, #3d35b9, #5144d7 55%, #2859ac);
+  background-size: 180% 100%;
+  transition: background-position 220ms ease, transform 220ms ease, box-shadow 220ms ease;
+}
+.action-primary:hover { background-position: 100% 0; }
+.service-panel { background: linear-gradient(130deg, #f3f6ff, #fff 62%); }
+.mobile-navigation { max-height: calc(100vh - 56px); max-height: calc(100dvh - 56px); }
+.admin-shell { background: radial-gradient(ellipse at 100% 0%, #e9effd, transparent 42%), #f5f7fb; }
+.admin-shell thead { background-color: #f6f8fc; }
+.admin-sidebar { background: radial-gradient(ellipse at 0% 0%, #232c5c, transparent 55%), #0b1024; }
+.admin-nav-active {
+  background: linear-gradient(100deg, rgba(99, 95, 242, .42), rgba(99, 95, 242, .16));
+  box-shadow: inset 0 0 0 1px rgba(164, 172, 253, .24);
+}
+.admin-hero {
+  background: radial-gradient(ellipse at 88% 0%, #3b3fa6, transparent 52%),
+    radial-gradient(ellipse at 30% 130%, #17486b, transparent 55%), #0e1430;
+  box-shadow: 0 12px 28px -18px rgba(14, 19, 41, .45);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html:focus-within { scroll-behavior: smooth; }
+}

@@ -1,0 +1,38 @@
+/* src/Carasoul.css */
+
+.row {
+    flex-direction: row-reverse; /* Adjust row direction for smaller screens */
+    margin-bottom: 6vw;
+    justify-content: center;
+    align-items:center
+  }
+
+@media (max-width: 768px) {
+    .carousel-description {
+      margin-top: 10px;
+      padding: 15px; /* Adjust padding for smaller screens */
+    }
+  
+    p {
+      font-size: 14px;
+      line-height: 22px;
+    }
+  
+    .carousel-item img {
+      border-radius: 15px;
+      width: 82%; /* Adjust image width for smaller screens */
+      height: auto;
+    }
+  
+    .row {
+      flex-direction: column; /* Adjust row direction for smaller screens */
+      margin-bottom: 6vw;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .carousel-item img {
+      width: 60%; /* Further adjust image width for extra small screens */
+    }
+  }
+  
