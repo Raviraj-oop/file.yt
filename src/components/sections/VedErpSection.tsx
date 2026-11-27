@@ -1,6 +1,7 @@
 import React from 'react';
-import { ArrowRight, CheckCircle2, Info, Target } from 'lucide-react';
-import { erpChallenges, erpEfficiency, erpIntro, erpJourney, erpOffers, erpWhy } from '../../Mockdata/VedErp';
+import { ArrowRight, Info } from 'lucide-react';
+import { erpEfficiency, erpIntro, erpJourney, erpOffers, erpWhy } from '../../Mockdata/VedErp';
+import ErpChallengeStack from './ErpChallengeStack';
 import Reveal from '../ui/Reveal';
 import SectionHeader from '../ui/SectionHeader';
 
@@ -87,55 +88,8 @@ const VedErpSection = () => (
       </div>
     </section>
 
-    {/* Challenges and solutions */}
-    <section id="erp-challenges" className="border-t border-ink-200 bg-ink-50">
-      <div className="page py-8 sm:py-10">
-        <SectionHeader
-          title="Business Challenges & How Vipra ERP Solves Them"
-          intro="Each challenge is the problem an ERP module is built to solve. Impacts are expected benefits of using these modules, not measured results."
-        />
-        <div className="mt-5 grid gap-4 lg:grid-cols-2">
-          {erpChallenges.map(({ icon: Icon, challenge, problem, solution, how, impact, area }, i) => (
-            <Reveal key={challenge} delay={(i % 2) * 0.07} className="h-full">
-              <article className="card card-hover card-glow group flex h-full flex-col overflow-hidden">
-                <div className="p-4">
-                  <div className="flex items-start gap-3">
-                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-2xl bg-rose-50 text-rose-600 ring-1 ring-inset ring-rose-100 transition-transform duration-300 group-hover:scale-105"><Icon size={19} /></span>
-                    <div className="min-w-0">
-                      <p className="text-xs font-semibold text-rose-700">Business challenge</p>
-                      <h3 className="mt-1 text-lg font-bold leading-snug">{challenge}</h3>
-                    </div>
-                  </div>
-                  <p className="mt-4 leading-relaxed text-ink-600">{problem}</p>
-                </div>
-                <div className="mx-4 rounded-2xl bg-brand-50/70 p-3 ring-1 ring-inset ring-brand-100">
-                  <p className="flex items-center gap-2 text-xs font-semibold text-brand-700">
-                    <CheckCircle2 size={15} aria-hidden="true" /> Vipra ERP solution
-                  </p>
-                  <h4 className="mt-1.5 text-lg font-bold">{solution}</h4>
-                  <p className="mt-3 text-xs font-semibold text-ink-500">How it works</p>
-                  <ul className="mt-2 space-y-1.5">
-                    {how.map((h) => (
-                      <li key={h} className="flex gap-2.5 text-[15px] leading-relaxed text-ink-700">
-                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500" aria-hidden="true" />
-                        {h}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="mt-auto flex flex-col gap-3 p-4 xl:flex-row xl:items-start xl:justify-between sm:p-4">
-                  <p className="flex gap-2.5 text-[15px] leading-relaxed text-ink-800">
-                    <Target size={18} className="mt-0.5 shrink-0 text-emerald-600" aria-hidden="true" />
-                    <span><span className="font-semibold">Expected impact:</span> {impact}</span>
-                  </p>
-                  <span className="shrink-0 self-start rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-800 ring-1 ring-inset ring-emerald-600/20">{area}</span>
-                </div>
-              </article>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
+    {/* Challenges and solutions: stacking cards */}
+    <ErpChallengeStack />
 
     {/* Efficiency areas */}
     <section id="erp-efficiency" className="home-hero relative isolate overflow-hidden">

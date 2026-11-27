@@ -26,6 +26,7 @@
     padding: 1px;
     background: linear-gradient(135deg, #8085f9, #a9ebee 45%, #c58bff);
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     opacity: 0;
@@ -128,4 +129,13 @@
 
 @media (prefers-reduced-motion: no-preference) {
   html:focus-within { scroll-behavior: smooth; }
+}
+
+/* Products page: stacking challenge cards (ErpChallengeStack.tsx) */
+.erp-stack-card {
+  transform-origin: 50% 0;
+  will-change: transform;
+  background: linear-gradient(160deg, #1b2350 0%, #121838 55%, #0e1329 100%);
+  border: 1px solid #b9c9ff33;
+  box-shadow: 0 -10px 40px -12px #000a, 0 24px 60px -20px #05081599;
 }
